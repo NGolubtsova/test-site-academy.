@@ -168,6 +168,46 @@ body{background:linear-gradient(180deg,#F1F0F7 0%,#E3DFF4 60%,#D9D3F0 100%) fixe
 header{background:rgba(241,240,247,.85)}
 .plan,.form{box-shadow:0 10px 30px -18px rgba(76,60,181,.35)}
 </style>
+<style>
+/* Кнопки: глянец, свечение и бегущий блик */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::before{content:"";position:absolute;inset:0 0 52% 0;border-radius:inherit;pointer-events:none;z-index:-1}
+.btn::after{content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:42%;pointer-events:none;z-index:-1;opacity:0;transform:translateX(-160%) skewX(-20deg)}
+
+.btn.p{
+  background:linear-gradient(180deg,#8470F5 0%,#6552D9 52%,#5240C2 100%);
+  box-shadow:0 10px 24px -8px rgba(101,82,217,.75),0 0 18px rgba(132,112,245,.35),
+    inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 0 1px rgba(255,255,255,.16),inset 0 -3px 0 rgba(40,20,120,.22);
+  text-shadow:0 1px 1px rgba(40,20,120,.35)}
+.btn.p:hover{background:linear-gradient(180deg,#917EFF 0%,#7360E8 52%,#5C49D0 100%);
+  box-shadow:0 14px 30px -8px rgba(101,82,217,.85),0 0 28px rgba(145,126,255,.55),
+    inset 0 1px 0 rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.2),inset 0 -3px 0 rgba(40,20,120,.22)}
+.btn.p::before{background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.04))}
+.btn.p::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent)}
+
+.btn.o{
+  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(236,234,246,.55));
+  border-color:rgba(101,82,217,.55);color:var(--tush);
+  box-shadow:0 8px 20px -10px rgba(101,82,217,.5),0 0 14px rgba(185,174,242,.35),
+    inset 0 1px 0 #fff,inset 0 -2px 0 rgba(101,82,217,.12);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn.o:hover{background:linear-gradient(180deg,#fff,rgba(236,234,246,.8));border-color:#6552D9;
+  box-shadow:0 12px 26px -10px rgba(101,82,217,.6),0 0 24px rgba(185,174,242,.65),
+    inset 0 1px 0 #fff,inset 0 -2px 0 rgba(101,82,217,.14)}
+.btn.o::before{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
+.btn.o::after{background:linear-gradient(90deg,transparent,rgba(132,112,245,.45),transparent)}
+
+/* блик пробегает при наведении на любой кнопке */
+.btn:hover::after{animation:sheen-once .9s ease-out}
+/* на первом экране - сам, каждые несколько секунд */
+.hero .btn::after{animation:sheen 4.2s ease-in-out infinite}
+.hero .btn.o::after{animation-delay:1.4s}
+.hero .btn.p{animation:glow 3.4s ease-in-out infinite alternate}
+@keyframes sheen{0%{opacity:0;transform:translateX(-160%) skewX(-20deg)}8%{opacity:1}42%{opacity:1}52%,100%{opacity:0;transform:translateX(420%) skewX(-20deg)}}
+@keyframes sheen-once{0%{opacity:1;transform:translateX(-160%) skewX(-20deg)}100%{opacity:1;transform:translateX(420%) skewX(-20deg)}}
+@keyframes glow{from{filter:drop-shadow(0 0 0 rgba(132,112,245,0))}to{filter:drop-shadow(0 0 10px rgba(132,112,245,.55))}}
+@media (prefers-reduced-motion:reduce){.btn::after,.hero .btn,.hero .btn::after{animation:none!important}}
+</style>
 </head>
 <body>
 
